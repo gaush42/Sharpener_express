@@ -3,9 +3,11 @@ const products = [
     { id: 1, name: "Laptop" },
     { id: 2, name: "Phone" }
 ];
+const path = require('path')
 
 exports.getAllProducts = (req, res) => {
-    res.send("Fetching all products");
+    //res.send("Fetching all products");
+    res.sendFile(path.join(__dirname,'..', 'view', 'product.html'))
 };
 
 exports.addProduct = (req, res) => {
