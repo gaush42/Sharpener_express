@@ -1,13 +1,14 @@
 const express = require('express')
 const mysql = require('mysql2')
 const bodyParser = require('body-parser')
+const { Sequelize } = require('sequelize');
 
 const app = express()
 const port = 3000
 
 app.use(bodyParser.json())
 
-const db = mysql.createPool({
+/*const db = mysql.createPool({
     host:'localhost',
     user:'root',
     password:'root',
@@ -23,17 +24,24 @@ db.getConnection((err, connection)=>{
         log(`Connected to mySQL ${connection.config.database}`);
         connection.release();
     }
-})
-/*const db = mysql.createConnection({
+})*/
+const sequelize = new Sequelize('sharpener', 'root', 'root', {
     host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'sharpener'
+    dialect: 'mysql',
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
 });
-db.connect(err => {
-    if (err) throw err;
-    console.log('Connected to MySQL');
-});*/
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connected to MySQL database:', sequelize.config.database);
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+});
 
 const log = (msg) => console.log(`${msg}`)
 
