@@ -1,16 +1,13 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/sequelize');
 
-const User = sequelize.define('User', {
-  name: {
-    type: DataTypes.STRING,
-  },
-  email: {
-    type: DataTypes.STRING,
-  },
-}, {
-  tableName: 'users',
-  timestamps: false,
-});
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define("User", {
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+  });
 
-module.exports = User;
+  User.associate = (models) => {
+    User.hasMany(models.Booking, { foreignKey: "userId" });
+  };
+
+  return User;
+};
