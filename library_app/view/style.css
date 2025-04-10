@@ -1,0 +1,56 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    color: white;
+    background-color: #015b7f;
+  }
+  input {
+    margin: 20px;
+    width: 15%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #006b00;
+    color: white;
+    padding: 8px 20px;
+  }
+  .book-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .book-card {
+    color: whitesmoke;
+    font-size: 20px;
+    line-height: 200%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #373231;;
+    position: relative;
+    background-color: #373231;
+  }
+  .overdue {
+    color: red;
+  }
+  .dialogue {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #373231;
+    border: 1px solid #aaa;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #0003;
+    z-index: 999;
+  }
+  .overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+  }
+  
